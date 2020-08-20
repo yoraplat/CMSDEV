@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+        <div class="dashboard-content-component">
+    <h2 class="content-title">Worksheet aanpassen</h2>
+            {# {{ form(form) }} #}
+            {{ form_start(form) }}
+                <div class="form-error">
+                    {{ form_errors(form) }}
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <p class="form-subtitle">Datums</p>
+                        {{ form_label(form.startDate, 'Begin datum') }}
+                        {{ form_widget(form.startDate, {'attr': {'class': 'time_field'}}) }}
+
+                        {{ form_label(form.endDate, 'Stop datum') }}
+                        {{ form_widget(form.endDate, {'attr': {'class': 'time_field'}}) }}
+                    </div>
+                    <div class="col">
+                        <p class="form-subtitle">Gegevens</p>
+                        {{ form_label(form.pause, 'Pauze (minuten)') }}
+                        {{ form_widget(form.pause, {'attr': {'class': 'time_field time_pause'}}) }}
+                        
+                        {{ form_label(form.overtime, 'Overuren (minuten)') }}
+                        {{ form_widget(form.overtime) }}
+                        
+                        {{ form_label(form.activities, 'Activiteiten') }}
+                        {{ form_widget(form.activities) }}
+                        
+                        {{ form_label(form.materials, 'Gebruikte materialen') }}
+                        {{ form_widget(form.materials) }}
+
+                        {{ form_label(form.hourRate, 'Uurtarief') }}
+                        {{ form_widget(form.hourRate) }}
+
+                        {{ form_label(form.transportCost, 'Transportkosten') }}
+                        {{ form_widget(form.transportCost) }}
+
+                        {{ form_label(form.period, 'Periode') }}
+                        {{ form_widget(form.period) }}
+
+                        {{ form_label(form.employee, 'Werknemer') }}
+                        {{ form_widget(form.employee) }}
+
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

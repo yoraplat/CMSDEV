@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+{% include 'frontend/navigation.html.twig' %}
+<div class="dashboard-content">
+    <div class="dashboard-content-component">
+    {% if periods is empty %}
+    <h3>Je hebt nog geen periodes aangemaakt</h3>
+    <p style="padding-bottom: 10px; margin-top:20px">Hier komen je toekomstige periodes te staan.</p>
+    {% else %}
+    <h3>Nog te accepteren periodes</h3>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th>Start</th>
+                <th>Einde</th>
+                <th>Transport</th>
+                <th>Prijs/u</th>
+                <th>Acties</th>
+            </tr>
+            {% for period in periods|sort((a, b) => a.startDate <=> b.startDate) %}
+            {% if period.acceptedByClient == 0 %}
+            <tr>
+                <td>{{ period.name }}</td>
+                <td>{{ period.startDate|date('d/m/Y') }}</td>
+                <td>{{ period.endDate|date('d/m/Y') }}</td>
+                <td>€{{ period.transportCost }}</td>
+                <td>€{{ period.hourRate }}</td>
+                <td><a href="{{ path('frontend_accept_period', {'id': period.id }) }}">Accepteren</a></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table> 
+    {% endif %}
+        </div>
+</div>
+
+{% endblock %}
+

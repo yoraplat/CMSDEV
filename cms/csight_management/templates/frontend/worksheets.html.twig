@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+{% include 'frontend/navigation.html.twig' %}
+<div class="dashboard-content">
+<h2>Worksheets</h2>
+    <div class="dashboard-content-component">
+        <table>
+            <tr>
+                <th>Periode</th>
+                <th>Start</th>
+                <th>Einde</th>
+                <th>Transport</th>
+                <th>Prijs/u</th>
+                {# <th>Tijd</th> #}
+                <th>Overuren</th>
+                <th>Pauze</th>
+                <th>Activiteiten</th>
+                <th>Materiaal</th>
+            </tr>
+            {% for worksheet in worksheets|sort((a, b) => a.startDate <=> b.startDate) %}
+            <tr>
+                <td>{{ worksheet.period.name }}</td>
+                <td>{{ worksheet.startDate|date('d/m/Y G:i') }}</td>
+                <td>{{ worksheet.endDate|date('d/m/Y H:i') }}</td>
+                {% if worksheet.transportCost == null %}
+                <td>€{{ period.transportCost }}</td>
+                {% else %}
+                <td>€{{ worksheet.transportCost }}</td>
+                {% endif %}
+                
+                {% if worksheet.hourRate == null %}
+                <td>€{{ period.hourRate }}</td>
+                {% else %}
+                <td>€{{ worksheet.hourRate }}</td>
+                {% endif %}
+                {# <td>{{ worksheet.time }}min</td> #}
+                <td>{{ worksheet.overtime }}min</td>
+                <td>{{ worksheet.pause }}min</td>
+                <td>
+                {% for activity in worksheet.activities %}
+                {{ activity }},
+                {% endfor %}
+                </td>
+                <td>
+                {% for material in worksheet.materials %}
+                {{ material }},
+                {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table> 
+        </div>
+</div>
+
+{% endblock %}
+

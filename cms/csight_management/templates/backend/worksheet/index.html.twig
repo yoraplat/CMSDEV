@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+        <div class="dashboard-content-component">
+        <h2 class="content-title">Worksheets</h2>
+        <label for="period">Periode</label>
+        <select name="period">
+        {% set selectedPeriod = 3 %}
+            <option value="1">Periode 1</option>
+            <option value="2">Periode 2</option>
+            <option value="3">Periode 3</option>
+        </select>
+        <table>
+            <tr>
+                <th>Datum</th>
+                <th>Klant</th>
+                <th>Werknemer</th>
+                <th>Tijd</th>
+                <th>Pauze</th>
+                <th>Uren</th>
+                <th>Acties</th>
+            </tr>
+            {% for worksheet in worksheets|filter(worksheet => worksheet.periodId == selectedPeriod) %}
+            <tr>
+                <td>{{ worksheet.startDate|date('d/m/Y') }}</td>
+                <td>{{ worksheet.period.client.name }}</td>
+                <td>{{ worksheet.employee.name }}</td>
+                <td>{{ worksheet.startDate|date('G:i')}}u - {{ worksheet.endDate|date('H:i')}}u</td>
+                <td>{{ worksheet.pause }}min</td>
+                <td>
+                    {{ worksheet.time }}min
+                    {% if worksheet.overtime != 0 %}
+                    <br>
+                    Overuren: {{ worksheet.overtime }}min
+                    {% endif %}
+                </td>
+                <td><a href="{{ path('edit_worksheet', {'id': worksheet.id }) }}" class="action-button">Aanpassen</a></td>
+            </tr>
+            {% endfor %}
+        </table> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+        <div class="dashboard-content-component">
+    <h2 class="content-title">Gebruikers</h2>
+    <a href="{{ path('add_user') }}" class="content-add">Nieuwe gebruiker <i class="fa fa-plus-square"></i></a>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Naam</th>
+                    <th>Email</th>
+                    <th>Gebruikerstype</th>
+                    <th>Acties</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% for role in user.roles %}
+                        <p>{{ role|replace({"ROLE_": ""})|capitalize }}</p>
+                        {% endfor %}
+                    </td>
+                    <td><a href="{{ path('edit_user', {'id': user.id }) }}" class="action-button">Aanpassen</a></td>
+                </tr>
+                {% endfor %}
+            
+            </table> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

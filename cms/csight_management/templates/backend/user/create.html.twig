@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+<div class="dashboard-content">
+    <div class="dashboard-content-component">
+        <h2 class="content-title">Nieuwe gebruiker</h2>
+        {{ form_start(form) }}
+                <div class="form-error">
+                    {{ form_errors(form) }}
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            {{ form_label(form.name, 'Naam:') }}
+                            {{ form_widget(form.name) }}
+                        </div>
+                        
+                        <div class="row">
+                            {{ form_label(form.password, 'Wachtwoord:') }}
+                            {{ form_widget(form.password) }}
+                        </div>
+
+                        <div class="row">
+                            {{ form_label(form.email, 'Email:') }}
+                            {{ form_widget(form.email) }}
+                        </div>
+                        <div class="row">
+                            {{ form_label(form.roles, 'Rol:') }}
+                            {{ form_widget(form.roles) }}
+                        </div>
+
+                    </div>
+                </div>
+            {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

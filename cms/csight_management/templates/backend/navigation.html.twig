@@ -1,0 +1,26 @@
+<nav>
+<div class="dashboard">
+    <div class="dashboard-navigation">
+        <div class="dashboard-navigation-logo">
+            <a href="{{ path('backend_dashboard') }}"><img src="{{ asset('images/logo.png') }}"></a>
+        </div>
+        <div class="dashboard-navigation-item">
+            <a href="{{ path('backend_dashboard') }}">Periodes</a>
+        </div>
+        <div class="dashboard-navigation-item">
+            <a href="{{ path('backend_worksheets') }}">Worksheets</a>
+        </div>
+        <div class="dashboard-navigation-item">
+            <a href="{{ path('backend_users') }}">Gebruikers</a>
+        </div>
+        <div class="dashboard-navigation-item">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            <a class="navigation-item" href="{{ path('app_logout') }}">Uitloggen <i class="fa fa-sign-out"></i></a>
+            {% else %}
+            <a class="navigation-item" href="{{ path('app_login') }}">Login <i class="fa fa-sign-in"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</nav>

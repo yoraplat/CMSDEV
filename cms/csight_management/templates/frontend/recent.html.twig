@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+{% include 'frontend/navigation.html.twig' %}
+<div class="dashboard-content" style="">
+    <div class="dashboard-content-component">
+    {% if periods is empty %}
+    <h3>Er zijn nog geen recente activiteiten</h3>
+    <p style="padding-bottom: 10px; margin-top:20px">Hier komt nieuwe activiteit te staan.</p>
+    {% else %}
+    <h3>Recente worksheets</h3>
+        <table>
+            <tr>
+                <th>Periode</th>
+                <th>Start</th>
+                <th>Einde</th>
+                <th>Transport</th>
+                <th>Prijs/u</th>
+                <th>Pauze</th>
+            </tr>
+            {# Check if worksheets are recent #}
+            {% for period in periods %}
+                {% for worksheet in period.worksheets %}
+                    {% if date(worksheet.createdAt) < date('-2days') %}
+                     <tr>
+                <td>{{ period.name }}</td>
+                <td>{{ worksheet.startDate|date('d/m/Y') }}</td>
+                <td>{{ worksheet.endDate|date('d/m/Y') }}</td>
+                {% if worksheet.transportCost == null %}
+                <td>€{{ period.transportCost }}</td>
+                {% else %}
+                <td>€{{ worksheet.transportCost }}</td>
+                {% endif %}
+                
+                {% if worksheet.hourRate == null %}
+                <td>€{{ period.hourRate }}</td>
+                {% else %}
+                <td>€{{ worksheet.hourRate }}</td>
+                {% endif %}
+                <td>{{ worksheet.pause }}min</td>
+            </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </table> 
+        {% endif %}
+        </div>
+</div>
+
+{% endblock %}
+

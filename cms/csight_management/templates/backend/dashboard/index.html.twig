@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+        <div class="dashboard-content-component">
+            <h2 class="content-title">Periodes</h2>
+            <a href="{{ path('add_period') }}" class="content-add">Nieuwe periode <i class="fa fa-plus-square"></i></a>
+
+        <table>
+                <tr>
+                    {# <th>#</th> #}
+                    <th>Naam</th>
+                    <th>Klant</th>
+                    <th>Tijd</th>
+                    <th>Acties</th>
+                </tr>
+                {% for period in periods %}
+                <tr>
+                    <td>{{ period.name }}</td>
+                    <td>{{ period.client.name }}</td>
+                    <td>{{ period.startDate|date('d/m/Y') }} - {{ period.endDate|date('d/m/Y')}}</td>
+                    <td><a href="{{ path('edit_period', {'id': period.id }) }}" class="action-button">Aanpassen</a></td>
+                </tr>
+                {% endfor %}
+            
+            </table> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

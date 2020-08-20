@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            text-align: left;
+        }
+        .overview-pdf {
+            display:block;
+            margin:0 auto;
+
+        }
+
+        .overview-pdf th {
+            width: calc(100%/6);
+        }
+
+        .title {
+            font-size: 2em;
+            padding-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overview-pdf">
+            <table>
+            <tr>
+                <th class="title">Facturatie</th>
+            </tr>
+                <tr>
+                    <th>Naam</th>
+                    <th>Start</th>
+                    <th>Einde</th>
+                    <th>Transport</th>
+                    <th>Totale prijs</th>
+                    <th>Tijd</th>
+                </tr>
+
+                <tr>
+                {# Check if subtractor has set own price #}
+                    {% set employee_price = 0  %}
+                    {% set sub_price = 0  %}
+                    {% set time = 0  %}
+
+                    {% set transport = 0  %}
+                    <td>{{ period.name }}</td>
+                    <td>{{ period.startDate|date('d/m/Y') }}</td>
+                    <td>{{ period.endDate|date('d/m/Y') }}</td>
+                    
+                    {% for worksheet in period.worksheets %}
+                    {% set time = time + worksheet.time + worksheet.overtime %}
+                        {% if worksheet.hourRate is not null %}
+                            {% set sub_price = sub_price + ((worksheet.time + (worksheet.overtime + (worksheet.overtime / 100 * 20)) ) / 60 ) *  worksheet.hourRate  %}
+                            {% set transport = transport + worksheet.transportCost %}
+                        {% elseif worksheet.hourRate is null %}
+                            {% set employee_price = employee_price + ((worksheet.time + (worksheet.overtime + (worksheet.overtime / 100 * 20)) ) / 60 ) *  period.hourRate   %}
+                            {% set transport = transport + period.transportCost %}
+                        {% endif %}
+                    {% endfor %}
+                    <td>€{{ transport }}</td>
+                    <td>€{{ (employee_price + sub_price)|round(2) }}</td>
+                    <td>{{ (time / 60)|round(1) }}u</td>
+                    
+                    {# <td>{{ period.worksheets|length }}</td> #}
+                </tr>
+                <tr>
+                    <th class="subtitle">Worksheets</th>
+                </tr>
+                <tr>
+                    <th>Start</th>
+                    <th>Einde</th>
+                    <th>Pauze</th>
+                    <th>Tijd <small>(excl. overuren)</small></th>
+                    <th>Overuren</th>
+                    <th>Materiaal</th>
+                    <th>Activiteiten</th>
+                </tr>
+                {% for worksheet in period.worksheets %}
+                <tr>
+                    <td>{{ worksheet.startDate|date('d/m/Y H:i') }}</td>
+                    <td>{{ worksheet.endDate|date('d/m/Y H:i') }}</td>
+                    <td>{{ worksheet.pause }}min</td>
+                    <td>{{ worksheet.time }}min</td>
+                    <td>{{ worksheet.overtime }}min</td>
+                    <td>
+                        {% for material in worksheet.materials %}
+                    {{ material }}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for activity in worksheet.activities %}
+                    {{ activity }}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+    </div>
+</body>
+</html>

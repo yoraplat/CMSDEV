@@ -1,0 +1,38 @@
+.detail {
+    .dashboard-nav {
+        display: flex;
+        flex-direction: row;
+        a {
+            margin: 0 auto;
+        }
+
+    }
+    // display: block;
+    .detail-template {
+        display: block;
+        width: 75%;
+        min-width: 300px;
+        max-width: 700px;
+        margin: 0 auto;
+
+        
+        .detail-list {
+            padding: 10px;
+            background-color: $color6;
+            font-size: 1.1em;
+        }
+        form {
+            background-color: #EF8354;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            .template-row {
+                margin-bottom: 10px;
+
+                label {
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+}

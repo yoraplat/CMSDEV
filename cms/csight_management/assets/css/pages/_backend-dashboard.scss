@@ -1,0 +1,67 @@
+    .dashboard-content {
+        width: 78%;
+        display: inline-block;
+        // display: flex;
+        background-color: $color3;
+        margin-left: 10px;
+        vertical-align: top;   
+        .content-title {
+            display: block;
+        }
+        
+        .dashboard-content-component {
+            width: 100%;
+            background-color: $color4;
+            padding-left: 10px;
+            form {
+                font-family: 'Roboto', sans-serif;
+                fieldset {
+                    border: 0px;
+                    margin-left: 0px;
+                    padding-left: 0px;
+                }
+                padding-bottom: 10px;
+                .form-subtitle {
+                    font-weight: 400;
+                    font-size: 1.1em;
+                }
+                
+                .row {
+                    margin-top: 10px;
+                }
+
+                button {
+                    background-color: $color5;
+                    border: 0;
+                    font-size: 1em;
+                    font-weight: 500;
+                    padding: 8px 5px;
+                    margin-top: 20px;
+                    cursor: pointer;
+                }
+            }
+
+            table {
+                margin-top: 10px;
+                tr {
+                    
+                    th{
+                        text-align: left;
+                        width: 5%;
+                        max-width: 200px;
+                        min-width: 100px;
+                    }
+                    
+                    td {
+                        padding-right: 15px;
+                        // padding-top: 10px;
+                    }
+                }
+
+                tr:nth-child(even) {
+                    background-color: $color6;
+                }
+            }
+            
+        }
+    }

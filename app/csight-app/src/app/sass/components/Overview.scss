@@ -1,0 +1,43 @@
+.overview {
+    .dashboard-nav {
+        display: flex;
+        flex-direction: row;
+        a {
+            margin: 0 auto;
+        }
+    }
+
+    background-color: $color4;
+    
+    .overview-template {
+        display: block;
+        width: 90%;
+        min-width: 300px;
+        max-width: 700px;
+        margin: 0 auto;
+        .overview-list {
+            padding: 10px;
+            background-color: $color5;
+    
+            table {
+                width: 100%;
+                th {
+                    text-align: left;
+                    padding-bottom: 5px;
+                }
+
+                tr {
+                    a {
+                        text-decoration: none;
+                        color: $color1;
+                        padding: 5px;
+                    }
+                }
+
+                tr:nth-child(even) {
+                    background-color: $color6;
+                }
+            }
+        }
+    }
+}

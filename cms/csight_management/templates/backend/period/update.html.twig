@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+        <div class="dashboard-content-component">
+        <h2 class="content-title">Periode aanpassen</h2>
+            {{ form(form) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

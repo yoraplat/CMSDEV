@@ -1,0 +1,30 @@
+.login-form {
+    background-color: #ffd6c6;
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    form {
+        font-family: 'Roboto', sans-serif;
+        .login-row {
+            display: flex;
+            flex-direction: column;
+            max-width: 200px;
+
+            :first-child {
+                margin-bottom: 5px;
+            }
+            :last-child {
+                margin-bottom: 10px;
+            }
+        }
+        .login-submit-btn {
+            border: 0;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: white;
+            background-color: blue;
+            padding: 5px 0;
+        }
+    }
+}

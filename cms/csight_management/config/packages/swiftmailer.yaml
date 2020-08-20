@@ -1,0 +1,16 @@
+swiftmailer:
+    transport: "smtp"
+    host: "smtp.sendgrid.net"
+    username: "apikey"
+    password: "%env(MAILER_PASSWORD)%"
+    auth_mode: login
+    port: 587
+    encryption: ssl
+    # delivery_address: "%mailer_delivery_address%"
+    url: '%env(MAILER_URL)%'
+    spool: { type: 'memory' }
+    # disable_delivery: true
+    stream_options:
+       ssl:
+           allow_self_signed: true
+           verify_peer: false

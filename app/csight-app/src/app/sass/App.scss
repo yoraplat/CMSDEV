@@ -1,0 +1,23 @@
+
+// Colors
+$color1: #2D3142;
+$color2: #4F5D75;
+$color3: #f7f7f7;
+$color4: #FFFFFF;
+$color5: #77ADE6;
+$color6: #d3e9ff;
+
+@import './components/MainNav.scss';
+@import './components/Detail.scss';
+@import './components/Overview.scss';
+@import './components/LoginForm.scss';
+@import './components/Dashboard.scss';
+@import './base.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+body {
+    background-color: $color3;
+    font-family: 'Roboto', sans-serif;
+}

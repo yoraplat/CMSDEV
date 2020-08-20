@@ -1,0 +1,28 @@
+// Colors
+$color1: #2D3142;
+$color2: #4F5D75;
+$color3: #f7f7f7;
+$color4: #FFFFFF;
+$color5: #77ADE6;
+$color6: #d3e9ff;
+
+
+
+// Import Variables
+@import './style/variables';
+@import './style/reset';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+// Backend
+@import './pages/backend-dashboard.scss';
+@import './page_parts/backend_navigation.scss';
+@import './page_parts/unauthorized.scss';
+@import './page_parts/base.scss';
+
+body {
+    background-color: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+}
+

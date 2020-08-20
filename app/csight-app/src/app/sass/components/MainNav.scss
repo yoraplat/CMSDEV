@@ -1,0 +1,17 @@
+.main-nav {
+    display: flex;
+    list-style-type: none;
+    align-content: center;
+    padding-left: 0px;
+        a {
+            text-align: center;
+            flex-grow: 1;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: 500;
+            padding: 10px 0;
+            color: black;
+            margin: 0 10px;
+            background-color: $color5;
+        }
+}

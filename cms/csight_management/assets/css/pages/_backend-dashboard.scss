@@ -4,7 +4,9 @@
         // display: flex;
         background-color: $color3;
         margin-left: 10px;
-        vertical-align: top;   
+        vertical-align: top;
+        max-height: 100vh;
+        // overflow-y: scroll;
         .content-title {
             display: block;
         }
@@ -14,6 +16,14 @@
             background-color: $color4;
             padding-left: 10px;
             form {
+
+                .form-group {
+                    margin-top: 5px;
+                    input {
+                        margin-left: 5px;
+                    }
+                }
+
                 font-family: 'Roboto', sans-serif;
                 fieldset {
                     border: 0px;

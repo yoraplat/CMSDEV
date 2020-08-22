@@ -10,11 +10,16 @@
         <div class="dashboard-content-component">
         <h2 class="content-title">Worksheets</h2>
         <label for="period">Periode</label>
-        <select name="period">
-        {% set selectedPeriod = 3 %}
-            <option value="1">Periode 1</option>
-            <option value="2">Periode 2</option>
-            <option value="3">Periode 3</option>
+        <select name="period" id="ddlPeriods" onchange="val()">
+            {# {% set selectedPeriod = periods|first.id %} #}
+            
+            {% for period in periods %}
+                {% if period.id == app.request.get('periodId') %}
+                    <option selected value={{period.id}}>{{ period.name }}</option>
+                {% else %}
+                <option value={{period.id}}>{{ period.name }}</option>
+                {% endif %}
+            {% endfor %}
         </select>
         <table>
             <tr>
@@ -26,7 +31,9 @@
                 <th>Uren</th>
                 <th>Acties</th>
             </tr>
-            {% for worksheet in worksheets|filter(worksheet => worksheet.periodId == selectedPeriod) %}
+            {# {% for worksheet in worksheets|filter(worksheet => worksheet.periodId == selectedPeriod) %} #}
+            {% if worksheets != null %}
+            {% for worksheet in worksheets %}
             <tr>
                 <td>{{ worksheet.startDate|date('d/m/Y') }}</td>
                 <td>{{ worksheet.period.client.name }}</td>
@@ -43,9 +50,26 @@
                 <td><a href="{{ path('edit_worksheet', {'id': worksheet.id }) }}" class="action-button">Aanpassen</a></td>
             </tr>
             {% endfor %}
+            {% else %}
+            <p>Deze periode bevat nog geen worksheets</p>
+            {% endif %}
         </table> 
         </div>
     </div>
 </div>
+<script>
+
+    function val() {
+        let e = document.getElementById("ddlPeriods").value;
+        
+        {# let url = window.location.href;
+        let to = url.lastIndexOf('/');
+        to = to == -1 ? url.length : to + 1;
+        url = url.substring(0, to); #}
+        
+        window.location.href = location.protocol + '//' + location.host + '/admin/worksheets/' + e;
+
+    }
+</script>
 
 {% endblock %}

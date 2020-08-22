@@ -18,37 +18,54 @@
                 <div class="row">
                     <div class="col">
                         <p class="form-subtitle">Datums</p>
-                        {{ form_label(form.startDate, 'Begin datum') }}
-                        {{ form_widget(form.startDate, {'attr': {'class': 'time_field'}}) }}
+                        <div class="form-group">
+                            {{ form_label(form.startDate, 'Begin datum') }}
+                            {{ form_widget(form.startDate, {'attr': {'class': 'time_field'}}) }}
+                        </div>
 
                         {{ form_label(form.endDate, 'Stop datum') }}
                         {{ form_widget(form.endDate, {'attr': {'class': 'time_field'}}) }}
                     </div>
                     <div class="col">
                         <p class="form-subtitle">Gegevens</p>
-                        {{ form_label(form.pause, 'Pauze (minuten)') }}
-                        {{ form_widget(form.pause, {'attr': {'class': 'time_field time_pause'}}) }}
+                        <div class="form-group">
+                            {{ form_label(form.pause, 'Pauze (minuten)') }}
+                            {{ form_widget(form.pause, {'attr': {'class': 'time_field time_pause'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.overtime, 'Overuren (minuten)') }}
+                            {{ form_widget(form.overtime) }}
+                        </div>
                         
-                        {{ form_label(form.overtime, 'Overuren (minuten)') }}
-                        {{ form_widget(form.overtime) }}
+                        <div class="form-group">
+                            {{ form_label(form.activities, 'Activiteiten') }}
+                            {{ form_widget(form.activities) }}
+                        </div>
                         
-                        {{ form_label(form.activities, 'Activiteiten') }}
-                        {{ form_widget(form.activities) }}
-                        
-                        {{ form_label(form.materials, 'Gebruikte materialen') }}
-                        {{ form_widget(form.materials) }}
+                        <div class="form-group">
+                            {{ form_label(form.materials, 'Gebruikte materialen') }}
+                            {{ form_widget(form.materials) }}
+                        </div>
 
-                        {{ form_label(form.hourRate, 'Uurtarief') }}
-                        {{ form_widget(form.hourRate) }}
+                        <div class="form-group">
+                            {{ form_label(form.hourRate, 'Uurtarief') }}
+                            {{ form_widget(form.hourRate) }}
+                        </div>
 
-                        {{ form_label(form.transportCost, 'Transportkosten') }}
-                        {{ form_widget(form.transportCost) }}
+                        <div class="form-group">
+                            {{ form_label(form.transportCost, 'Transportkosten') }}
+                            {{ form_widget(form.transportCost) }}
+                        </div>
 
-                        {{ form_label(form.period, 'Periode') }}
-                        {{ form_widget(form.period) }}
+                        <div class="form-group">
+                            {{ form_label(form.period, 'Periode') }}
+                            {{ form_widget(form.period) }}
+                        </div>
 
-                        {{ form_label(form.employee, 'Werknemer') }}
-                        {{ form_widget(form.employee) }}
+                        <div class="form-group">
+                            {{ form_label(form.employee, 'Werknemer') }}
+                            {{ form_widget(form.employee) }}
+                        </div>
 
                     </div>
                 </div>

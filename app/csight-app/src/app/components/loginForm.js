@@ -99,7 +99,7 @@ const LoginForm = () => {
                 </div>
                 <div className="login-row">
                     <label for="password">Password:</label>
-                    <input name="password" type="password" id="txtPassword" name="txtPassword" onChange={handleInputChange}/>
+                    <input name="password" type="password" placeholder="Password" id="txtPassword" name="txtPassword" onChange={handleInputChange}/>
                 </div>
                 <div className="login-row">
                     <button className="login-submit-btn">LOGIN</button>

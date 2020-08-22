@@ -5,6 +5,7 @@ namespace App\Controller\Backend;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Worksheet;
+use App\Entity\Period;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\EditWorksheetFormType;
 
@@ -12,19 +13,25 @@ use App\Form\EditWorksheetFormType;
 class worksheetController extends AbstractController
 {
     /**
-     * @Route("/admin/worksheets", name="backend_worksheets")
+     * @Route("/admin/worksheets/{periodId}", defaults={"periodId"=1}, name="backend_worksheets")
      */
-    public function index()
+    public function index($periodId)
     {
+        // $worksheets = $this->getDoctrine()
+        // ->getRepository(Worksheet::class)
+        // ->findAll();
+
         $worksheets = $this->getDoctrine()
         ->getRepository(Worksheet::class)
+        ->findBy(array('periodId' => $periodId));
+        
+        $periods = $this->getDoctrine()
+        ->getRepository(period::class)
         ->findAll();
 
-        // dd($worksheets);
-
-        // dd($worksheets);
         return $this->render('backend/worksheet/index.html.twig', [
             'worksheets' => $worksheets,
+            'periods' => $periods,
         ]);
     }
     

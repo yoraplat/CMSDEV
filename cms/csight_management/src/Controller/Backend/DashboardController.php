@@ -5,6 +5,7 @@ namespace App\Controller\Backend;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\UserBundle\Mailer\MailerInterface;
 
 use App\Entity\Period;
 use App\Form\EditPeriodFormType;
@@ -33,7 +34,7 @@ class DashboardController extends AbstractController
     /**
      * @Route("/admin/period/create", name="add_period")
      */
-    public function addPeriod(Request $request, \Swift_Mailer $mailer)
+    public function addPeriod(Request $request)
     {
         $period = new Period();
 
@@ -52,19 +53,33 @@ class DashboardController extends AbstractController
             $entityManager->persist($period);
             $entityManager->flush();
 
-            // Send email to client
+            // email
+            $em = $this->getDoctrine()->getManager();
+            $transport = (new \Swift_SmtpTransport('smtp.mailtrap.io', 2525))
+            ->setUsername('7fbc51688f464f')
+            ->setPassword('f799a7f36d6e9a');
 
-            // $message = (new \Swift_Message('Hello Email'))
-            //     ->setFrom('yoram.mobile@mail.com')
-            //     ->setTo('yoraplat@student.arteveldehs.be')
-            //     ->setBody(
-            //     $this->renderView(
-            //         // templates/emails/registration.html.twig
-            //         'email/period/new_period.html.twig',
-            //         // ['name' => 'yoram']
-            //     ),'text/html'
-            // );
-            // $mailer->send($message);
+            $mailer = new \Swift_Mailer($transport);
+            // $retrievedPeriods = $em->getRepository(Period::class)->findOneBy([
+            //     'id' => $period->id
+            // ]);
+
+            // $customer = $retrievedPeriods->getCustomer();
+
+            $message = (new \Swift_Message('Nieuwe periode aangemaakt | C-SIGHT'))
+            ->setSubject('Nieuwe periode aangemaakt')
+            ->setFrom(['csight@mail.com'])
+            ->setTo([$period->getClient()->getEmail()])
+            ->setBody(
+                $this->renderView(
+                    'email/period/new_period.html.twig',
+                    [
+                        'period' => $period
+                    ]
+                ), 'text/html'
+            );
+            $result = $mailer->send($message);
+            $this->addFlash('success', 'Mail verzonden');
 
             return $this->redirectToRoute('backend_dashboard');
         }

@@ -1,0 +1,49 @@
+.login-form {
+    background-color: $color5;
+    width: 50%;
+    max-width: 500px;
+    margin-top: 30vh;
+    display: block;
+    margin: 0 auto;
+
+    .form-content {
+        min-width: 300px;
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        padding-bottom: 10px;
+        
+        h1 {
+            width: 80%;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            padding-top: 10px;
+        }
+
+        .login-form-item {
+            margin-bottom: 10px;
+        }
+        
+        input {
+            width: 80%;
+            margin: 0 auto;
+            display: block;
+            border: 0;
+            padding: 12px 5px;
+
+        }
+        button {
+            width: 80%;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 10px;
+            background-color: $color6;
+            border: 0;
+            padding: 8px 12px;
+            font-size: 1em;
+            // margin-top: 10px;
+        }
+    }
+}

@@ -24,10 +24,6 @@ class PeriodsController extends AbstractController
             ->getRepository(Period::class)
             ->findBy(array('clientId' => $this->getUser()));
 
-            // dd($periods);
-            // Get all non accepted periods for this user
-            // ->findBy(array('clientId' => $this->getUser(), 'acceptedByClient' => false));
-
             return $this->render('frontend/periods.html.twig', [
                 'periods' => $periods,
             ]);

@@ -24,7 +24,6 @@ class DashboardController extends AbstractController
             ->getRepository(Period::class)
             ->findBy(array('clientId' => $this->getUser()));
             
-            // dd($periods);
             return $this->render('frontend/dashboard.html.twig', [
                 'periods' => $periods,
             ]);

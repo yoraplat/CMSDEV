@@ -43,12 +43,7 @@ const Dasbhoard = () => {
         if(checkIfLoggedIn() === false) {
             history.push(Routes.AUTH_SIGN_IN);
         } 
-        // else {
-        //     setWorksheetForm({
-        //         ...worksheetForm,
-        //         txtEmployee_id: currentUser.id
-        //     });
-        // }
+
     }
     const fetchperiods = async () => {
         const data = await findPeriods();

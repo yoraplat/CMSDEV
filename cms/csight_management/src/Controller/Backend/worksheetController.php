@@ -17,10 +17,6 @@ class worksheetController extends AbstractController
      */
     public function index($periodId)
     {
-        // $worksheets = $this->getDoctrine()
-        // ->getRepository(Worksheet::class)
-        // ->findAll();
-
         $worksheets = $this->getDoctrine()
         ->getRepository(Worksheet::class)
         ->findBy(array('periodId' => $periodId));
@@ -59,8 +55,6 @@ class worksheetController extends AbstractController
             return $this->redirectToRoute('backend_worksheets');
         }
 
-        // dd($worksheet);
-        
         return $this->render('backend/worksheet/update.html.twig', [
             'form' => $form->createView(),
         ]);

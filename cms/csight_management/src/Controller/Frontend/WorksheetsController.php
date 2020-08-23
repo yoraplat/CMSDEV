@@ -29,9 +29,6 @@ class WorksheetsController extends AbstractController
             ->getRepository(Period::class)
             ->find($id);
 
-            // Get all non accepted worksheets for this user
-            // ->findBy(array('clientId' => $this->getUser(), 'acceptedByClient' => false));
-
             return $this->render('frontend/worksheets.html.twig', [
                 'worksheets' => $worksheets,
                 'period' => $period,
@@ -50,19 +47,11 @@ class WorksheetsController extends AbstractController
             return $this->redirectToRoute('unauthorized');
         } else {
 
-            // $worksheets = $this->getDoctrine()
-            // ->getRepository(Worksheet::class)
-            // ->findBy(array('periodId' => $id));
-            
             $periods = $this->getDoctrine()
             ->getRepository(Period::class)
             ->findBy(array('clientId' => $this->getUser()));
 
-            // Get all non accepted worksheets for this user
-            // ->findBy(array('clientId' => $this->getUser(), 'acceptedByClient' => false));
-
             return $this->render('frontend/recent.html.twig', [
-                // 'worksheets' => $worksheets,
                 'periods' => $periods,
             ]);
         }
@@ -85,12 +74,6 @@ class WorksheetsController extends AbstractController
         
         $worksheet->setAcceptedByClient(true);
         $entityManager->flush();
-
-        // $worksheet = $this->getDoctrine()
-        // ->getRepository(Worksheet::class)
-        // ->find($id);
-
-
 
         return $this->redirectToRoute('frontend_worksheets');
         }

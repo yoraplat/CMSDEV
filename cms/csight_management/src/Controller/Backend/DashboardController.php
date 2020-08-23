@@ -24,8 +24,6 @@ class DashboardController extends AbstractController
         ->getRepository(Period::class)
         ->findAll();
 
-        // dd($periods);
-
         return $this->render('backend/dashboard/index.html.twig', [
             "periods" => $periods,
         ]);
@@ -47,8 +45,6 @@ class DashboardController extends AbstractController
             $period->setClientId($period->getClient()->getId());
             $period->setAcceptedByClient(false);
             $period->setCreatedAt(new \DateTime);
-            // dd($period);
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($period);
             $entityManager->flush();
@@ -60,11 +56,6 @@ class DashboardController extends AbstractController
             ->setPassword('f799a7f36d6e9a');
 
             $mailer = new \Swift_Mailer($transport);
-            // $retrievedPeriods = $em->getRepository(Period::class)->findOneBy([
-            //     'id' => $period->id
-            // ]);
-
-            // $customer = $retrievedPeriods->getCustomer();
 
             $message = (new \Swift_Message('Nieuwe periode aangemaakt | C-SIGHT'))
             ->setSubject('Nieuwe periode aangemaakt')

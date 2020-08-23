@@ -81,10 +81,6 @@ const LoginForm = () => {
     
     return (
         <div className="login-form">
-            {/* { users && users.map((user, index ) => (
-                <p>{user.email}</p>
-                
-            ))} */}
             {
               checkIfLoggedIn() ? 
               <div>

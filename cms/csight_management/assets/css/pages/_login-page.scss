@@ -1,13 +1,24 @@
 .login-form {
     background-color: $color5;
     width: 50%;
-    max-width: 500px;
+    max-width: 400px;
     margin-top: 30vh;
     display: block;
     margin: 0 auto;
 
+    .login-logo {
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+        max-width: 200px;
+        min-width: 70px;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
     .form-content {
-        min-width: 300px;
+        // min-width: 300px;
+        max-width: 300px;
         width: 100%;
         display: block;
         margin: 0 auto;
@@ -18,7 +29,7 @@
             margin: 0 auto;
             display: block;
             margin-bottom: 20px;
-            margin-top: 50px;
+            // margin-top: 50px;
             padding-top: 10px;
         }
 
@@ -35,7 +46,7 @@
 
         }
         button {
-            width: 80%;
+            width: 83%;
             margin: 0 auto;
             display: block;
             margin-bottom: 10px;

@@ -22,7 +22,7 @@
             {# Check if worksheets are recent #}
             {% for period in periods %}
                 {% for worksheet in period.worksheets %}
-                    {% if date(worksheet.createdAt) < date('-2days') %}
+                    {% if date(worksheet.createdAt) > date('-2days') %}
                      <tr>
                 <td>{{ period.name }}</td>
                 <td>{{ worksheet.startDate|date('d/m/Y') }}</td>
